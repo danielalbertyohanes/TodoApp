@@ -33,7 +33,7 @@ class ListTodoViewModel(application: Application):AndroidViewModel(application),
         }
     }
 
-    fun checkTask(todo: Todo){
+    fun clearTask(todo: Todo){
         //launch ini artinya code dibawah ini bisa di jalan bersamaan dengan code yang lain nya
         launch {
             val db = TodoDatabase.buildDatabase(getApplication())
