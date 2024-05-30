@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.todoapp.util.DB_NAME
+import com.example.todoapp.util.MIGRATION_1_2
 
 
-@Database(entities = arrayOf(Todo::class), version =  1) //(Todo::class) sesuai dengan table yang ada di database nya
+@Database(entities = arrayOf(Todo::class), version =  2) //version disini akan bertambah ketika ada update atau pembaharuan database
 abstract class TodoDatabase: RoomDatabase() {
 
     //sususai dengan banyak nya dao yang kita punya kalo kita punya banyak dao maka sebanyak itulah abstract fun todoDao(): TodoDao  harus di buat
@@ -20,7 +22,7 @@ abstract class TodoDatabase: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 TodoDatabase::class.java,
-                "newtododb").build()
+                DB_NAME).addMigrations(MIGRATION_1_2).build()
 
         operator fun invoke(context:Context) {
             if(instance!=null) {

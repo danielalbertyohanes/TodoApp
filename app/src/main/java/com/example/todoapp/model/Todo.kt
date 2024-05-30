@@ -17,10 +17,11 @@ data class Todo(
 @ColumnInfo(name="title")
     var title:String,
     @ColumnInfo(name="notes")
-    var notes:String)
+    var notes:String,
+    @ColumnInfo(name="priority")
+    var priority:Int
 
-
-{
+) {
 
 //    PrimaryKey Annotation
 //    Each entity class requires one primary key. Autogenerate config set to true to let SQLite generate the unique id
