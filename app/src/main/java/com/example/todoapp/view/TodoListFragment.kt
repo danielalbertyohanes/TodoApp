@@ -9,15 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.todoapp.R
 import com.example.todoapp.databinding.FragmentTodoListBinding
-import com.example.todoapp.databinding.TodoItemLayoutBinding
 import com.example.todoapp.viewmodel.ListTodoViewModel
 
 
 class TodoListFragment : Fragment() {
     private lateinit var viewModel: ListTodoViewModel
-    private val todoListAdapter  = TodoListAdapter(arrayListOf(),  { item -> viewModel.clearTask(item) })
+    private val todoListAdapter = TodoListAdapter(arrayListOf(),  { item ->
+        viewModel.clearTask(item)
+    })
 
     private lateinit var binding: FragmentTodoListBinding
     override fun onCreateView(

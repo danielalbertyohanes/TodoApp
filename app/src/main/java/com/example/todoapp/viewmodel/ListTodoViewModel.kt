@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.todoapp.model.Todo
-import com.example.todoapp.model.TodoDatabase
 import com.example.todoapp.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,10 +40,12 @@ class ListTodoViewModel(application: Application):AndroidViewModel(application),
         launch {
             //val db = TodoDatabase.buildDatabase(getApplication())
             val db = buildDb(getApplication())
-
-            db.todoDao().deleteTodo(todo)
+            todo.is_done = 1
+            db.todoDao().updateTodo(todo)
+            //db.todoDao().deleteTodo(todo)
             todoListLD.postValue(db.todoDao().selectAllTodo())
 
         }
     }
+
 }

@@ -14,12 +14,14 @@ data class Todo(
 
 //    ColumInfo Annotation
 //    specify a column name for the field in table database
-@ColumnInfo(name="title")
-    var title:String,
-    @ColumnInfo(name="notes")
-    var notes:String,
-    @ColumnInfo(name="priority")
-    var priority:Int
+    @ColumnInfo(name = "title")
+    var title: String,
+    @ColumnInfo(name = "notes")
+    var notes: String,
+    @ColumnInfo(name = "priority")
+    var priority: Int,
+    @ColumnInfo(name = "is_done")
+    var is_done: Int = 0 //pake integer karena SQLite tidak ada BOOLEAN data type, pake INTEGER dimana 0 berarti false dan 1 true.
 
 ) {
 

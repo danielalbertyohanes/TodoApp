@@ -12,7 +12,7 @@ interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg todo:Todo) // vararg bisa berisi banyak mirip seperti arry namun didalm nya ada todo 1,todo 2, dll
 
-    @Query("SELECT * FROM todo ORDER BY priority DESC")
+    @Query("SELECT * FROM todo where is_done = 0 ORDER BY priority DESC")
     fun selectAllTodo(): List<Todo>
 
     @Query("SELECT * FROM todo WHERE uuid= :id")
@@ -25,10 +25,16 @@ interface TodoDao {
     fun deleteTodo(todo:Todo)
 
     //ada dua versi terkait dengan update pada database nya
-    @Query("UPDATE todo SET title=:title, notes=:notes, priority=:priority WHERE uuid = :id")
-    fun update(title:String, notes:String, priority:Int, id:Int)
+//    @Query("UPDATE todo SET title=:title, notes=:notes, priority=:priority WHERE uuid = :id")
+//    fun update(title:String, notes:String, priority:Int, id:Int)
 
     @Update
     fun updateTodo(vararg todo: Todo)
+
+//    @Query("SELECT * FROM todo WHERE is_done = 0")
+//    fun selectAllTodo(): List<Todo>
+//
+//    @Update
+//    fun updateTodo(todo: Todo)
 
 }

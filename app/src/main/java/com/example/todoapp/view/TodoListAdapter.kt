@@ -1,15 +1,19 @@
 package com.example.todoapp.view
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.CompoundButton
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.databinding.TodoItemLayoutBinding
 import com.example.todoapp.model.Todo
+import com.example.todoapp.viewmodel.ListTodoViewModel
 
-class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) -> Unit)
+
+class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick: (Todo) -> Unit)
     :RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>(), TodoCheckedChangeListener, TodoEditClickListener {
     class TodoViewHolder(var binding: TodoItemLayoutBinding):
         RecyclerView.ViewHolder(binding.root)
@@ -27,9 +31,10 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
 
         // penggunaan data binding untuk ui yang rame jadi bisa mempersingkat code
-        holder.binding.todo=todoList[position]
-        holder.binding.listener=this
-        holder.binding.editlistener=this
+        val todo = todoList[position]
+        holder.binding.todo = todo
+        holder.binding.listener = this
+        holder.binding.editlistener = this
 
 //        ini di ubah karena udah mnggunakan dataBinding
 //        holder.binding.checkTask.text = todoList[position].title
@@ -58,7 +63,7 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) 
     }
 
     override fun onTodoCheckedChange(cb: CompoundButton, isChecked: Boolean, todo: Todo) {
-        if(cb.isPressed) {
+        if (cb.isPressed) {
             adapterOnClick(todo)
         }
     }
@@ -68,12 +73,4 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) 
         val action = TodoListFragmentDirections.actionEditTodo(uuid)
         Navigation.findNavController(v).navigate(action)
     }
-
-
 }
-
-
-
-
-
-
